@@ -1,0 +1,28 @@
+<div>
+  Pesquisar: <input #campoInput type="text" (keyup.enter)="search(campoInput.value)" />
+  <button class="btn btn-primary" (click)="search(campoInput.value)"> Pesquisar </button>
+  <button class="btn btn-primary" (click)="search('')"> Limpar </button>
+</div>
+<div *ngIf="searched && resultArray.length ==0">
+  <br>
+  <h3>Não foram encontrados produtos com esse nome.</h3>
+</div>
+<div *ngIf="searched && resultArray.length > 0">
+  <h2>Resultados:</h2>
+  <table class="table" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of resultArray">
+        <th scope="row">{{result.id}}</th>
+        <td>{{result.name}}</td>
+        <td>{{result.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
