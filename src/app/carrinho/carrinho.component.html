@@ -1,0 +1,42 @@
+
+<h2>Carrinho:</h2>
+<div *ngIf="carrinho.length == 0">
+  <br>
+  <h3>Seu carrinho está vazio.</h3>
+</div>
+<div *ngIf="carrinho.length > 0">
+  <table class="table" style="width:100%">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Quantidade</th>
+        <th scope="col">Total Individual</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produtocarrinho of carrinho">
+        <th scope="row">{{produtocarrinho.produto.id}}</th>
+        <td>{{produtocarrinho.produto.name}}</td>
+        <td>R$ {{roundToTwoDecimals(produtocarrinho.produto.price)}}</td>
+        <div class="center">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="produtocarrinho.quantidade = produtocarrinho.quantidade > 0 ? produtocarrinho.quantidade-1 : 0" (click)= "atualizaTotal()">-</button>
+            </span>
+            {{produtocarrinho.quantidade}}
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="produtocarrinho.quantidade= produtocarrinho.quantidade < 999 ? produtocarrinho.quantidade-(-1) : 999" (click)= "atualizaTotal()">+</button>
+            </span>
+            <span class="input-group-btn" *ngIf="produtocarrinho.quantidade == 0">
+              <button type="button" class="btn btn-default btn-number" (click) ="removeProd(produtocarrinho)">Remover</button>
+            </span>
+          </div>
+        </div>
+        <td>R$ {{roundToTwoDecimals(produtocarrinho.produto.price * produtocarrinho.quantidade)}}</td>
+      </tr>
+    </tbody>
+  </table>
+  Total : {{roundToTwoDecimals(total)}}
+</div>

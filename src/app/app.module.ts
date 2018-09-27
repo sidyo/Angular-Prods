@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { SearchComponent } from './search/search.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProdutosComponent,
     SearchComponent,
+    CarrinhoComponent,
     
   ],
   imports: [

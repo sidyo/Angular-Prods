@@ -7,14 +7,30 @@
         <th scope="col">ID</th>
         <th scope="col">Nome</th>
         <th scope="col">Preço</th>
+        <th scope="col">Comprar</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let produto of produtos">
         <th scope="row">{{produto.id}}</th>
         <td>{{produto.name}}</td>
-        <td>R$ {{produto.price}}</td>
+        <td>R$ {{roundToTwoDecimals(produto.price)}}</td>
+        <div class="center">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="campoQuant.value = campoQuant.value > 0 ? campoQuant.value-1 : 0">-</button>
+            </span>
+            <input #campoQuant type="number" class="form-control input-number"  value="1">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="campoQuant.value = campoQuant.value < 999 ? campoQuant.value-(-1) : 999">+</button>
+            </span>
+            <span>
+              <button type ="button" class = "btn btn-default" (click)="adicionarAoCarrinho(produto,campoQuant.value)">Comprar</button>
+            </span>
+          </div>
+        </div>
       </tr>
     </tbody>
   </table>
 </div>
+
